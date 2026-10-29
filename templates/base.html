@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}ReceiptRadar{% endblock %}</title>
+  <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='favicon.svg') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="topbar">
+    <a href="{{ url_for('home') }}" class="brand-wrap">
+      <svg class="logo" width="40" height="40" viewBox="0 0 64 64" aria-hidden="true">
+        <rect x="8" y="4" width="36" height="50" rx="5" fill="#E5E4E2"/>
+        <line x1="15" y1="16" x2="37" y2="16" stroke="#6F4E37" stroke-width="3" stroke-linecap="round"/>
+        <line x1="15" y1="25" x2="37" y2="25" stroke="#6F4E37" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
+        <line x1="15" y1="34" x2="30" y2="34" stroke="#6F4E37" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
+        <circle cx="46" cy="44" r="15" fill="#EAAA00"/>
+        <circle cx="46" cy="44" r="15" fill="none" stroke="#6F4E37" stroke-width="2"/>
+        <line x1="46" y1="44" x2="46" y2="31" stroke="#6F4E37" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="46" cy="44" r="3" fill="#6F4E37"/>
+      </svg>
+      <span class="brand-text">
+        <span class="brand">ReceiptRadar</span>
+        <span class="tagline">Scan. Sort. Save.</span>
+      </span>
+    </a>
+    <nav>
+      <a href="{{ url_for('home') }}">Scan bill</a>
+      <a href="{{ url_for('dashboard') }}">My spending</a>
+    </nav>
+  </header>
+  <main class="container">
+    {% block content %}{% endblock %}
+  </main>
+</body>
+</html>

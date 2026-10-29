@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+{% block title %}My spending · ReceiptRadar{% endblock %}
+{% block content %}
+<section class="card">
+  <h1>My spending</h1>
+  <form method="get" action="{{ url_for('dashboard') }}" class="inline">
+    <label>Month
+      <input type="month" name="month" value="{{ month }}">
+    </label>
+    <button type="submit" class="btn">Show month</button>
+  </form>
+  {% if message %}<p class="ok">{{ message }}</p>{% endif %}
+  {% if error %}<p class="alert">{{ error }}</p>{% endif %}
+</section>
+
+<section class="card stats">
+  <div class="stat"><span>Income</span><strong>₹{{ "%.2f"|format(total_income) }}</strong></div>
+  <div class="stat"><span>Spent</span><strong>₹{{ "%.2f"|format(total_spent) }}</strong></div>
+  <div class="stat"><span>Saved</span><strong>₹{{ "%.2f"|format(saved) }}</strong></div>
+</section>
+
+<section class="card">
+  <h2>Spending vs income</h2>
+  {% set pct = (total_spent / total_income * 100) if total_income > 0 else 0 %}
+  <div class="meter">
+    <div class="meter-fill {% if pct > 100 %}over{% endif %}" style="width: {{ [pct, 100]|min }}%"></div>
+  </div>
+  {% if total_income > 0 %}
+    <p>You've spent {{ "%.0f"|format(pct) }}% of this month's income.</p>
+  {% else %}
+    <p>Add your income below to see how much of it you've spent.</p>
+  {% endif %}
+</section>
+
+{% if saved < 0 %}
+<section class="card"><p class="alert">You spent more than your income this month.</p></section>
+{% endif %}
+{% if top_category %}
+<section class="card"><p class="ok">Biggest spending this month: <strong>{{ top_category }}</strong></p></section>
+{% endif %}
+
+<section class="card">
+  <h2>Add income</h2>
+  <form action="{{ url_for('add_income') }}" method="post">
+    <input type="hidden" name="month" value="{{ month }}">
+    <label>Source
+      <input type="text" name="source" value="Pocket money">
+    </label>
+    <label>Amount
+      <input type="number" step="0.01" name="amount" required>
+    </label>
+    <button type="submit" class="btn">Save income</button>
+  </form>
+
+  {% if incomes %}
+  <table>
+    <tr><th>Source</th><th>Amount</th></tr>
+    {% for r in incomes %}
+    <tr><td>{{ r.source }}</td><td>₹{{ "%.2f"|format(r.amount) }}</td></tr>
+    {% endfor %}
+  </table>
+  {% endif %}
+</section>
+
+<section class="card">
+  <h2>By category</h2>
+  {% if category_totals %}
+  <table>
+    <tr><th>Category</th><th>Spent</th><th>Share</th></tr>
+    {% for name, amount in category_totals %}
+    <tr>
+      <td>{{ name }}</td>
+      <td>₹{{ "%.2f"|format(amount) }}</td>
+      <td>{{ "%.0f"|format(amount / total_spent * 100) if total_spent > 0 else 0 }}%</td>
+    </tr>
+    {% endfor %}
+  </table>
+  {% else %}
+  <p>No bills saved for this month. <a href="{{ url_for('home') }}">Scan a bill</a>.</p>
+  {% endif %}
+</section>
+
+<section class="card">
+  <h2>By day</h2>
+  {% if day_totals %}
+  <table>
+    <tr><th>Date</th><th>Spent</th></tr>
+    {% for day, amount in day_totals %}
+    <tr><td>{{ day }}</td><td>₹{{ "%.2f"|format(amount) }}</td></tr>
+    {% endfor %}
+  </table>
+  {% else %}
+  <p>Nothing yet.</p>
+  {% endif %}
+</section>
+
+<section class="card">
+  <h2>All bills</h2>
+  {% if expenses %}
+  <table>
+    <tr><th>Date</th><th>Shop</th><th>Category</th><th>Amount</th></tr>
+    {% for r in expenses %}
+    <tr>
+      <td>{{ r.date }}</td>
+      <td>{{ r.shop }}</td>
+      <td>{{ r.category }}</td>
+      <td>₹{{ "%.2f"|format(r.amount) }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  {% else %}
+  <p>Nothing yet.</p>
+  {% endif %}
+</section>
+{% endblock %}

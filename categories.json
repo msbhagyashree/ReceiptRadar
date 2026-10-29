@@ -1,0 +1,36 @@
+{
+  "categories": {
+    "Clothing": {
+      "shops": ["pothys", "pothy's", "silks", "textile", "garments", "boutique", "tailor", "fashion", "westside", "max fashion"],
+      "items": ["saree", "shirt", "t-shirt", "kurta", "dhoti", "veshti", "lungi", "jeans", "trouser", "churidar", "blouse", "dress", "shorts", "socks", "shawl"]
+    },
+    "Books & Education": {
+      "shops": ["book", "bookstore", "stationery", "xerox", "printing", "academy", "institute", "coaching", "school"],
+      "items": ["notebook", "book", "pen", "pencil", "eraser", "marker", "register", "textbook", "tuition", "exam fee", "course fee", "geometry box"]
+    },
+    "Makeup & Beauty": {
+      "shops": ["beauty", "salon", "parlour", "parlor", "cosmetics", "nykaa", "lakme"],
+      "items": ["lipstick", "kajal", "mascara", "foundation", "compact", "face wash", "facewash", "serum", "moisturizer", "perfume", "nail polish", "shampoo", "conditioner", "eyeliner"]
+    },
+    "Food": {
+      "shops": ["cafe", "restaurant", "hotel", "zomato", "swiggy", "bakery", "dhaba", "biryani", "pizza", "juice"],
+      "items": ["paneer", "naan", "roti", "dosa", "idli", "biryani", "pizza", "burger", "samosa", "chicken", "mutton", "coffee", "fried rice", "noodles", "ice cream", "sandwich"]
+    },
+    "Groceries": {
+      "shops": ["mart", "supermarket", "super market", "kirana", "bazaar", "grocery", "provision"],
+      "items": ["rice", "dal", "sugar", "salt", "milk", "bread", "eggs", "onion", "potato", "tomato", "carrot", "oil", "flour", "atta", "tea powder", "biscuit", "ketchup", "butter", "mushroom"]
+    },
+    "Household": {
+      "shops": ["hardware", "household", "electricals"],
+      "items": ["dettol", "handwash", "detergent", "soap", "tissue", "phenyl", "toilet cleaner", "bucket", "broom"]
+    },
+    "Transport": {
+      "shops": ["uber", "rapido", "petrol", "fuel", "metro"],
+      "items": ["petrol", "diesel", "fuel", "toll", "fare", "parking"]
+    },
+    "Health": {
+      "shops": ["pharmacy", "medical", "medplus", "clinic", "hospital", "apollo"],
+      "items": ["tablet", "syrup", "capsule", "paracetamol", "bandage", "ointment", "vitamin"]
+    }
+  }
+}

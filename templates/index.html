@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="card">
+  <h1>Scan a bill</h1>
+  <p>Take a photo of your bill, or choose one from your gallery. JPG, PNG, WEBP, HEIC, and most image formats work.</p>
+
+  {% if error %}<p class="alert">{{ error }}</p>{% endif %}
+
+  <form id="scan-form" action="{{ url_for('upload') }}" method="post" enctype="multipart/form-data" onsubmit="showScanner()">
+    <label class="upload-box">
+      📷 Tap here to take a photo
+      <input type="file" name="receipt" accept="image/*,.heic,.heif,.webp,.bmp,.tif,.tiff,.gif" capture="environment">
+    </label>
+    <button type="submit" class="btn">Read bill</button>
+  </form>
+</section>
+
+<div id="scanner" class="scanner" aria-live="polite">
+  <div class="scan-box">
+    <div class="fake-lines"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="scan-line"></div>
+  </div>
+  <p class="scan-text">Reading your bill…</p>
+</div>
+
+<script>
+  function showScanner() {
+    document.getElementById("scanner").classList.add("active");
+  }
+</script>
+{% endblock %}

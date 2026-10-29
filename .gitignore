@@ -1,0 +1,7 @@
+__pycache__/
+.venv/
+venv/
+uploads/
+expenses.csv
+income.csv
+learned.json
